@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com;"
+    />
     <title>Solicitud de Informes e Inscripción - UPM</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap"
@@ -114,6 +118,17 @@
         color: var(--upm-red);
       }
 
+      /* Honeypot anti-bots invisible para usuarios reales */
+      .hp-field {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
       .requisitos-card {
         background-color: #fafafb;
         border: 1px solid var(--border-color);
@@ -148,6 +163,7 @@
         font-size: 13px;
         color: var(--text-muted);
       }
+
       .requisitos-lista {
         margin: 0;
         padding-left: 20px;
@@ -162,6 +178,7 @@
       .requisitos-lista li:last-child {
         margin-bottom: 0;
       }
+
       .privacy-check {
         display: flex;
         align-items: flex-start;
@@ -277,7 +294,7 @@
         style="
           color: var(--upm-red);
           margin: 0;
-          font-family: &quot;Merriweather&quot;, serif;
+          font-family: "Merriweather", serif;
         "
       >
         Enviando Solicitud
@@ -296,7 +313,19 @@
         <p class="subtitle">Regístrate y asegura tu lugar con nosotros.</p>
       </header>
 
-      <form id="registroForm">
+      <form id="registroForm" novalidate>
+        <!-- Campo trampa para bots -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website_url">Sitio web</label>
+          <input
+            type="text"
+            id="website_url"
+            name="website_url"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
         <div class="form-grid">
           <div class="form-group full-width">
             <label for="nombre">
@@ -305,6 +334,7 @@
             <input
               type="text"
               id="nombre"
+              maxlength="120"
               placeholder="Escribe tu nombre y apellidos"
               required
             />
@@ -317,6 +347,7 @@
             <input
               type="email"
               id="correo"
+              maxlength="120"
               placeholder="ejemplo@correo.com"
               required
             />
@@ -408,6 +439,7 @@
             <a
               href="https://pontificia.edu.mx/politica-privacidad/"
               target="_blank"
+              rel="noopener noreferrer"
               style="color: var(--upm-red)"
             >
               Aviso de Privacidad
@@ -437,7 +469,7 @@
         <h2
           style="
             color: #27ae60;
-            font-family: &quot;Merriweather&quot;, serif;
+            font-family: "Merriweather", serif;
             margin: 0 0 8px;
           "
         >
@@ -484,6 +516,8 @@
       const SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbzgRLd4zt4WNHqKjbVRyYJOIt3UXQJK6F_PKASpbzSR2DEDekUMTOO92BVW4ILbU5_o6Q/exec";
 
+      const DOMINIOS_PERMITIDOS = ["pontificia.edu.mx"];
+
       const directorioFacultades = {
         "Facultad de Teología": {
           responsable: "Secretaría Académica - Facultad de Teología",
@@ -520,13 +554,14 @@
       const ofertaEducativa = [
         // Facultad de Teología
         {
-          slug: "bachillerato-canonico-en-teologia",
+          slug: "bachillerato-canonico-en-teologia-2",
           nombre: "Bachillerato Canónico en Teología",
           facultad: "Facultad de Teología",
           grado: "Grado Pontificio",
           requisitos: [
-            "Certificado de estudios filosóficos (bienio filosófico) o equivalente, acta de nacimiento y entrevista.",
-            "Certificado de estudios filosóficos (bienio filosófico) o equivalente, acta de nacimiento y entrevista.",
+            "Certificado de estudios filosóficos (bienio filosófico) o equivalente",
+            "Acta de nacimiento",
+            "Entrevista de admisión",
           ],
         },
         {
@@ -812,6 +847,18 @@
         },
       ];
 
+      function esOrigenConfiable(origin) {
+        if (!origin) return false;
+        try {
+          const host = new URL(origin).hostname.toLowerCase();
+          return DOMINIOS_PERMITIDOS.some(
+            (dom) => host === dom || host.endsWith("." + dom),
+          );
+        } catch (e) {
+          return false;
+        }
+      }
+
       const inputTelefono = document.getElementById("telefono");
 
       if (inputTelefono) {
@@ -866,41 +913,6 @@
         if (slug) seleccionarProgramaPorSlug(slug, true);
       }
 
-      function seleccionarProgramaPorSlug(slug, bloquear = true) {
-        const limpio = String(slug || "")
-          .toLowerCase()
-          .trim();
-        const encontrado = ofertaEducativa.find(
-          (p) => p.slug.toLowerCase() === limpio,
-        );
-        const select = document.getElementById("programa");
-        const hiddenSlug = document.getElementById("programa_slug_bloqueado");
-        const avisoBloqueo = document.getElementById(
-          "aviso-programa-bloqueado",
-        );
-
-        if (encontrado) {
-          select.value = encontrado.slug;
-          hiddenSlug.value = encontrado.slug;
-
-          if (bloquear) {
-            select.disabled = true;
-            avisoBloqueo.classList.remove("hidden");
-          }
-          actualizarInfoPrograma();
-        } else {
-          select.disabled = false;
-          hiddenSlug.value = "";
-          avisoBloqueo.classList.add("hidden");
-        }
-      }
-
-      window.addEventListener("message", function (event) {
-        if (!event.data) return;
-        const slugMsg =
-          typeof event.data === "string" ? event.data : event.data.slug;
-        if (slugMsg) seleccionarProgramaPorSlug(slugMsg, true);
-      });
       function seleccionarProgramaPorSlug(slug, ocultarSiExiste = true) {
         const limpio = String(slug || "")
           .toLowerCase()
@@ -942,12 +954,21 @@
         }
       }
 
+      window.addEventListener("message", function (event) {
+        if (!esOrigenConfiable(event.origin)) return;
+        if (!event.data) return;
+        const slugMsg =
+          typeof event.data === "string" ? event.data : event.data.slug;
+        if (slugMsg) seleccionarProgramaPorSlug(slugMsg, true);
+      });
+
       function actualizarInfoPrograma() {
         const select = document.getElementById("programa");
         const hiddenSlug = document.getElementById(
           "programa_slug_bloqueado",
         ).value;
-        const slug = select.disabled && hiddenSlug ? hiddenSlug : select.value;
+        const slug =
+          select.disabled && hiddenSlug ? hiddenSlug : select.value;
         const prog = ofertaEducativa.find((p) => p.slug === slug);
         const card = document.getElementById("requisitos-container");
         const lista = document.getElementById("req-lista");
@@ -979,6 +1000,18 @@
         .getElementById("registroForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
+
+          // Validación honeypot anti-bots
+          const honeypot = document.getElementById("website_url").value.trim();
+          if (honeypot !== "") return;
+
+          const nombre = document.getElementById("nombre").value.trim();
+          const correo = document.getElementById("correo").value.trim();
+          const lada = document.getElementById("lada").value;
+          const numero = document.getElementById("telefono").value.trim();
+          const aceptoPrivacidad =
+            document.getElementById("aviso_privacidad").checked;
+
           const select = document.getElementById("programa");
           const hiddenSlug = document.getElementById(
             "programa_slug_bloqueado",
@@ -986,17 +1019,23 @@
           const slug =
             select.disabled && hiddenSlug ? hiddenSlug : select.value;
           const prog = ofertaEducativa.find((p) => p.slug === slug);
-          if (!prog) return;
+
+          const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+          const telefonoValido = /^[0-9]{10}$/.test(numero);
+
+          if (!nombre || !emailValido || !telefonoValido || !prog || !aceptoPrivacidad) {
+            alert(
+              "Por favor completa todos los campos obligatorios, ingresa un teléfono de 10 dígitos y acepta el Aviso de Privacidad.",
+            );
+            return;
+          }
 
           document.getElementById("loading-overlay").style.display = "flex";
 
-          const lada = document.getElementById("lada").value;
-          const numero = document.getElementById("telefono").value.trim();
-
           const payload = {
             action: "add",
-            nombre: document.getElementById("nombre").value.trim(),
-            correo: document.getElementById("correo").value.trim(),
+            nombre: nombre,
+            correo: correo,
             lada: lada,
             telefono: `${lada} ${numero}`,
             facultad: prog.facultad,
