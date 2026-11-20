@@ -287,14 +287,14 @@
     </style>
   </head>
 
-  <body>
+  <body>s
     <div id="loading-overlay" class="overlay">
       <div class="spinner"></div>
       <h3
         style="
           color: var(--upm-red);
           margin: 0;
-          font-family: "Merriweather", serif;
+          font-family: &quot;Merriweather&quot;, serif;
         "
       >
         Enviando Solicitud
@@ -469,7 +469,7 @@
         <h2
           style="
             color: #27ae60;
-            font-family: "Merriweather", serif;
+            font-family: &quot;Merriweather&quot;, serif;
             margin: 0 0 8px;
           "
         >
@@ -559,9 +559,12 @@
           facultad: "Facultad de Teología",
           grado: "Grado Pontificio",
           requisitos: [
-            "Certificado de estudios filosóficos (bienio filosófico) o equivalente",
-            "Acta de nacimiento",
-            "Entrevista de admisión",
+            "Certificado de estudios preuniversitarios (bachillerato)",
+            "Grado de Bachillerato Canónico en Filosofía o estudios filosóficos equivalentes (promedio mínimo de 8.0)",
+            "Acta de nacimiento y documentación oficial legítima",
+            "Carta de autorización o aprobación de sus superiores (en caso de clérigos o religiosos)",
+            "Disponibilidad de tiempo completo (al menos 40 horas semanales para clases, estudio e idiomas: italiano, latín y griego)",
+            "Entrevista de admisión con el Decano de la Facultad",
           ],
         },
         {
@@ -967,8 +970,7 @@
         const hiddenSlug = document.getElementById(
           "programa_slug_bloqueado",
         ).value;
-        const slug =
-          select.disabled && hiddenSlug ? hiddenSlug : select.value;
+        const slug = select.disabled && hiddenSlug ? hiddenSlug : select.value;
         const prog = ofertaEducativa.find((p) => p.slug === slug);
         const card = document.getElementById("requisitos-container");
         const lista = document.getElementById("req-lista");
@@ -1023,7 +1025,13 @@
           const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
           const telefonoValido = /^[0-9]{10}$/.test(numero);
 
-          if (!nombre || !emailValido || !telefonoValido || !prog || !aceptoPrivacidad) {
+          if (
+            !nombre ||
+            !emailValido ||
+            !telefonoValido ||
+            !prog ||
+            !aceptoPrivacidad
+          ) {
             alert(
               "Por favor completa todos los campos obligatorios, ingresa un teléfono de 10 dígitos y acepta el Aviso de Privacidad.",
             );
