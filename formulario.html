@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitud de Informes e Inscripción - UPM</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --upm-red: #ae2d46;
+        --upm-gold: #c39a5c;
+        --text-main: #2c3e50;
+        --text-muted: #596a7b;
+        --border-color: #dcdde1;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        color: var(--text-main);
+        margin: 0;
+        padding: 12px;
+        line-height: 1.6;
+        background-color: transparent;
+      }
+
+      .main-container {
+        max-width: 700px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      header {
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 15px;
+      }
+
+      .header-logo {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-family: "Merriweather", serif;
+        color: var(--upm-red);
+        font-size: 22px;
+        margin: 0 0 5px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 12px;
+        color: var(--text-main);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      select {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 14px;
+        background-color: #fcfcfc;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--upm-red);
+        background-color: #fff;
+      }
+
+      select:disabled {
+        background-color: #f1f3f5;
+        color: var(--text-main);
+        border-color: #cfd4da;
+        cursor: not-allowed;
+        opacity: 1;
+      }
+
+      .field-required {
+        color: var(--upm-red);
+      }
+
+      .requisitos-card {
+        background-color: #fafafb;
+        border: 1px solid var(--border-color);
+        /*border-left: 4px solid var(--upm-gold);*/
+        padding: 16px 20px;
+        border-radius: 4px;
+        margin-top: 10px;
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .requisitos-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--upm-red);
+        /*background: rgba(174, 45, 70, 0.1);
+        padding: 3px 8px;*/
+        border-radius: 3px;
+        margin-bottom: 8px;
+      }
+
+      .requisitos-card h4 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        color: var(--text-main);
+      }
+
+      .requisitos-card p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+      .requisitos-lista {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .requisitos-lista li {
+        margin-bottom: 5px;
+      }
+
+      .requisitos-lista li:last-child {
+        margin-bottom: 0;
+      }
+      .privacy-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-top: 15px;
+        cursor: pointer;
+      }
+
+      .btn-submit {
+        background-color: var(--upm-red);
+        color: white;
+        padding: 14px 25px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.2s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #8c2335;
+      }
+
+      .exito-container {
+        text-align: center;
+        padding: 20px 10px;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .facultad-contact-box {
+        background-color: #f8f9fa;
+        border: 1px solid var(--border-color);
+        /*border-top: 4px solid var(--upm-red);*/
+        border-radius: 6px;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: left;
+      }
+
+      .facultad-contact-box h3 {
+        font-family: "Merriweather", serif;
+        color: var(--upm-red);
+        margin: 0 0 12px;
+        font-size: 17px;
+      }
+
+      .facultad-contact-box p {
+        margin: 6px 0;
+        font-size: 14px;
+        color: var(--text-main);
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.92);
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .spinner {
+        border: 4px solid rgba(174, 45, 70, 0.2);
+        border-left-color: var(--upm-red);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 15px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="loading-overlay" class="overlay">
+      <div class="spinner"></div>
+      <h3
+        style="
+          color: var(--upm-red);
+          margin: 0;
+          font-family: &quot;Merriweather&quot;, serif;
+        "
+      >
+        Enviando Solicitud
+      </h3>
+      <p style="color: #555; font-size: 14px">Por favor espera un momento...</p>
+    </div>
+
+    <div class="main-container">
+      <header>
+        <img
+          src="https://pontificia.edu.mx/wp-content/uploads/2026/08/programas-cursos-de-verano-2026-1.webp"
+          alt="Logo UPM"
+          class="header-logo"
+        />
+        <h1>Inicia tu camino en la UPM</h1>
+        <p class="subtitle">Regístrate y asegura tu lugar con nosotros.</p>
+      </header>
+
+      <form id="registroForm">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="nombre">
+              Nombre completo <span class="field-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              placeholder="Escribe tu nombre y apellidos"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="correo">
+              Correo electrónico <span class="field-required">*</span>
+            </label>
+            <input
+              type="email"
+              id="correo"
+              placeholder="ejemplo@correo.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">
+              Teléfono (Móvil) <span class="field-required">*</span>
+            </label>
+            <div style="display: flex; gap: 8px; align-items: stretch">
+              <select
+                id="lada"
+                name="lada"
+                aria-label="Lada telefónica"
+                style="width: 115px; flex-shrink: 0; padding: 11px 10px"
+              >
+                <option value="+52" selected>🇲🇽 +52</option>
+                <option value="+1">🇺🇸/🇨🇦 +1</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+57">🇨🇴 +57</option>
+                <option value="+502">🇬🇹 +502</option>
+                <option value="+503">🇸🇻 +503</option>
+                <option value="+504">🇭🇳 +504</option>
+                <option value="+506">🇨🇷 +506</option>
+                <option value="+507">🇵🇦 +507</option>
+                <option value="+51">🇵🇪 +51</option>
+                <option value="+54">🇦🇷 +54</option>
+                <option value="+56">🇨🇱 +56</option>
+              </select>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="10 dígitos"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                style="flex: 1; min-width: 0"
+                required
+              />
+            </div>
+          </div>
+
+          <div id="grupo-programa" class="form-group full-width">
+            <label for="programa">
+              Programa de Interés <span class="field-required">*</span>
+            </label>
+            <select id="programa" required onchange="actualizarInfoPrograma()">
+              <option value="" disabled selected>
+                Seleccione una carrera o posgrado...
+              </option>
+            </select>
+            <input
+              type="hidden"
+              id="programa_slug_bloqueado"
+              name="programa_slug"
+              value=""
+            />
+            <small
+              id="aviso-programa-bloqueado"
+              class="hidden"
+              style="
+                display: block;
+                margin-top: 6px;
+                font-size: 12px;
+                color: var(--text-muted);
+              "
+            >
+              Programa seleccionado automáticamente desde la página de origen.
+            </small>
+          </div>
+        </div>
+
+        <div id="requisitos-container" class="requisitos-card">
+          <span id="req-badge" class="requisitos-badge">Programa • Grado</span>
+          <h4>Requisitos principales de inscripción:</h4>
+          <ul id="req-lista" class="requisitos-lista"></ul>
+        </div>
+
+        <label class="privacy-check">
+          <input
+            type="checkbox"
+            id="aviso_privacidad"
+            required
+            style="margin-top: 3px"
+          />
+          <span>
+            He leído y acepto el tratamiento de mis datos personales conforme al
+            <a
+              href="https://pontificia.edu.mx/politica-privacidad/"
+              target="_blank"
+              style="color: var(--upm-red)"
+            >
+              Aviso de Privacidad
+            </a>
+            de la Universidad Pontificia de México.
+            <span class="field-required">*</span>
+          </span>
+        </label>
+
+        <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+
+      <div id="mensaje-exito" class="exito-container hidden">
+        <svg
+          style="width: 54px; height: 54px; color: #27ae60; margin-bottom: 10px"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <h2
+          style="
+            color: #27ae60;
+            font-family: &quot;Merriweather&quot;, serif;
+            margin: 0 0 8px;
+          "
+        >
+          ¡Solicitud Registrada!
+        </h2>
+        <p style="font-size: 14px; color: var(--text-muted); margin: 0">
+          Folio de seguimiento: <strong id="folio-generado">--</strong>
+        </p>
+
+        <div class="facultad-contact-box">
+          <p
+            style="
+              margin: 0 0 4px;
+              font-size: 13px;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.4px;
+              color: var(--upm-gold);
+            "
+          >
+            ¿Te interesa agilizar tu proceso? Contacta a la facultad
+          </p>
+          <h3 id="contacto-facultad-titulo">Facultad</h3>
+          <p>
+            <strong>Área de Atención:</strong>
+            <span id="contacto-responsable">--</span>
+          </p>
+          <p>
+            <strong>Correo Institucional:</strong>
+            <a id="contacto-correo" href="#" style="color: var(--upm-red)"
+              >--</a
+            >
+          </p>
+          <p>
+            <strong>Teléfono / Extensión:</strong>
+            <span id="contacto-telefono">--</span>
+          </p>
+          <p><strong>Horario:</strong> <span id="contacto-horario">--</span></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzgRLd4zt4WNHqKjbVRyYJOIt3UXQJK6F_PKASpbzSR2DEDekUMTOO92BVW4ILbU5_o6Q/exec";
+
+      const directorioFacultades = {
+        "Facultad de Teología": {
+          responsable: "Secretaría Académica - Facultad de Teología",
+          correo: "teologia@pontificia.edu.mx",
+          telefono: "(55) 5573-0600 Ext. 101",
+          horario: "Lunes a Viernes de 9:00 a 14:00 hrs y 16:00 a 18:00 hrs",
+        },
+        "Facultad de Ciencias y Humanidades": {
+          responsable: "Coordinación Académica - Ciencias y Humanidades",
+          correo: "humanidades@pontificia.edu.mx",
+          telefono: "(55) 5573-0600 Ext. 102",
+          horario: "Lunes a Viernes de 9:00 a 15:00 hrs",
+        },
+        "Facultad de Derecho Canónico": {
+          responsable: "Secretaría de la Facultad de Derecho Canónico",
+          correo: "derechocanonico@pontificia.edu.mx",
+          telefono: "(55) 5573-0600 Ext. 103",
+          horario: "Lunes a Viernes de 9:00 a 14:00 hrs",
+        },
+        "Facultad de Filosofía": {
+          responsable: "Secretaría Académica - Facultad de Filosofía",
+          correo: "filosofia@pontificia.edu.mx",
+          telefono: "(55) 5573-0600 Ext. 104",
+          horario: "Lunes a Viernes de 9:00 a 14:00 hrs",
+        },
+        "Instituto Superior de Ciencias Religiosas": {
+          responsable: "Coordinación del ISCR",
+          correo: "iscr@pontificia.edu.mx",
+          telefono: "(55) 5573-0600 Ext. 105",
+          horario: "Lunes a Viernes de 9:00 a 15:00 hrs",
+        },
+      };
+
+      const ofertaEducativa = [
+        // Facultad de Teología
+        {
+          slug: "bachillerato-canonico-en-teologia",
+          nombre: "Bachillerato Canónico en Teología",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos: [
+            "Certificado de estudios filosóficos (bienio filosófico) o equivalente, acta de nacimiento y entrevista.",
+            "Certificado de estudios filosóficos (bienio filosófico) o equivalente, acta de nacimiento y entrevista.",
+          ],
+        },
+        {
+          slug: "licencia-especializada-en-teologia-biblica",
+          nombre: "Licencia Especializada en Teología Bíblica",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Grado de Bachiller en Teología, conocimiento instrumental de lenguas bíblicas y entrevista.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-dogmatica",
+          nombre: "Licencia Especializada en Teología Dogmática",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología, certificado total de estudios y carta de motivos.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-espiritual",
+          nombre: "Licencia Especializada en Teología Espiritual",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología o estudios teológicos equivalentes.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-guadalupana",
+          nombre: "Licencia Especializada en Teología Guadalupana",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología, certificado de calificaciones y entrevista.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-moral",
+          nombre: "Licencia Especializada en Teología Moral",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología y entrevista de ingreso.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-pastoral",
+          nombre: "Licencia Especializada en Teología Pastoral",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología e interés en investigación pastoral.",
+        },
+        {
+          slug: "licencia-especializada-en-teologia-patristica",
+          nombre: "Licencia Especializada en Teología Patrística",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología y nociones de latín y griego.",
+        },
+        {
+          slug: "licencia-especializada-en-historia-de-la-iglesia",
+          nombre: "Licencia Especializada en Historia de la Iglesia",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología o licenciatura afín con estudios teológicos.",
+        },
+        {
+          slug: "doctorado-canonico-en-teologia",
+          nombre: "Doctorado Canónico en Teología",
+          facultad: "Facultad de Teología",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Licencia Canónica en Teología, proyecto doctoral y dominio de dos lenguas modernas.",
+        },
+        {
+          slug: "licenciatura-en-teologia",
+          nombre: "Licenciatura en Teología",
+          facultad: "Facultad de Teología",
+          grado: "Validez SEP",
+          requisitos:
+            "Certificado de Bachillerato legalizado, acta de nacimiento, CURP y proceso de admisión.",
+        },
+        {
+          slug: "maestria-en-teologia-dogmatica",
+          nombre: "Maestría en Teología Dogmática",
+          facultad: "Facultad de Teología",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura en Teología o afín, certificado de estudios y entrevista.",
+        },
+        {
+          slug: "maestria-en-historia-del-catolicismo-en-mexico",
+          nombre: "Maestría en Historia del Catolicismo en México",
+          facultad: "Facultad de Teología",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura, anteproyecto de investigación y entrevista.",
+        },
+        {
+          slug: "maestria-en-espiritualidad-y-formacion-de-vocaciones",
+          nombre: "Maestría en Espiritualidad y Formación de Vocaciones",
+          facultad: "Facultad de Teología",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura y carta de exposición de motivos.",
+        },
+
+        // Facultad de Ciencias y Humanidades
+        {
+          slug: "licenciatura-en-derecho",
+          nombre: "Licenciatura en Derecho",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Validez SEP",
+          requisitos:
+            "Certificado de Bachillerato legalizado, acta de nacimiento, CURP y examen diagnóstico.",
+        },
+        {
+          slug: "especialidad-en-derechos-humanos",
+          nombre: "Especialidad en Derechos Humanos",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura (o carta de pasante si aplica) y entrevista.",
+        },
+        {
+          slug: "especialidad-en-educacion-de-la-fe",
+          nombre:
+            "Especialidad en Educación de la Fe y Perspectivas Pedagógico – Pastorales",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura, CURP y carta de motivos.",
+        },
+        {
+          slug: "maestria-en-arte-sacro",
+          nombre: "Maestría en Arte Sacro",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura en áreas afines y entrevista académica.",
+        },
+        {
+          slug: "maestria-en-estudios-interdisciplinares-de-la-familia",
+          nombre: "Maestría en Estudios Interdisciplinares de la Familia",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura, certificado de estudios y entrevista.",
+        },
+        {
+          slug: "diplomado-especializado-en-familia",
+          nombre: "Diplomado Especializado en Familia",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Diplomado Especializado",
+          requisitos:
+            "Identificación oficial vigente, CURP y comprobante de último grado de estudios.",
+        },
+        {
+          slug: "diplomado-especializado-en-arte-sacro",
+          nombre: "Diplomado Especializado en Arte Sacro",
+          facultad: "Facultad de Ciencias y Humanidades",
+          grado: "Diplomado Especializado",
+          requisitos:
+            "Identificación oficial vigente, CURP y carta breve de interés.",
+        },
+
+        // Facultad de Derecho Canónico
+        {
+          slug: "primer-ciclo-canonico-derecho-canonico",
+          nombre: "Primer Ciclo Canónico / Ciclo Básico en Derecho Canónico",
+          facultad: "Facultad de Derecho Canónico",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Estudios previos de Filosofía y Teología (o evaluación equivalente) y entrevista.",
+        },
+        {
+          slug: "segundo-ciclo-licenciatura-canonica-derecho-canonico",
+          nombre: "Segundo Ciclo / Licenciatura Canónica en Derecho Canónico",
+          facultad: "Facultad de Derecho Canónico",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Bachillerato Canónico en Teología o Primer Ciclo aprobado, y conocimientos de latín.",
+        },
+        {
+          slug: "tercer-ciclo-doctorado-canonico-derecho-canonico",
+          nombre: "Tercer Ciclo / Doctorado Canónico en Derecho Canónico",
+          facultad: "Facultad de Derecho Canónico",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Licencia Canónica en Derecho Canónico, propuesta de tesis y dominio de latín y lenguas modernas.",
+        },
+        {
+          slug: "maestria-en-derecho-canonico",
+          nombre: "Maestría en Derecho Canónico",
+          facultad: "Facultad de Derecho Canónico",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura en Derecho, Teología o afín, certificado y entrevista.",
+        },
+
+        // Facultad de Filosofía
+        {
+          slug: "bachillerato-canonico-en-filosofia",
+          nombre: "Bachillerato Canónico en Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Certificado de Bachillerato o equivalente, acta de nacimiento y entrevista filosófica.",
+        },
+        {
+          slug: "licenciatura-canonica-en-filosofia",
+          nombre: "Licenciatura Canónica en Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Grado de Bachiller Canónico en Filosofía, certificado total e idioma.",
+        },
+        {
+          slug: "doctorado-canonico-filosofia",
+          nombre: "Doctorado Canónico Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Licencia Canónica en Filosofía, protocolo doctoral y aval del consejo de facultad.",
+        },
+        {
+          slug: "licenciatura-en-filosofia",
+          nombre: "Licenciatura en Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Validez SEP",
+          requisitos:
+            "Certificado de Bachillerato legalizado, acta de nacimiento, CURP y entrevista.",
+        },
+        {
+          slug: "maestria-en-filosofia",
+          nombre: "Maestría en Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura, anteproyecto de investigación y entrevista.",
+        },
+        {
+          slug: "doctorado-en-filosofia",
+          nombre: "Doctorado en Filosofía",
+          facultad: "Facultad de Filosofía",
+          grado: "Validez SEP",
+          requisitos:
+            "Grado de Maestría en Filosofía o área humanística afín, protocolo y entrevista.",
+        },
+
+        // Instituto Superior de Ciencias Religiosas
+        {
+          slug: "bachillerato-canonico-en-ciencias-religiosas",
+          nombre: "Bachillerato Canónico en Ciencias Religiosas",
+          facultad: "Instituto Superior de Ciencias Religiosas",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Certificado de Bachillerato o equivalente, acta de nacimiento y carta de recomendación.",
+        },
+        {
+          slug: "licenciatura-canonica-en-ciencias-religiosas",
+          nombre: "Licenciatura Canónica en Ciencias Religiosas",
+          facultad: "Instituto Superior de Ciencias Religiosas",
+          grado: "Grado Pontificio",
+          requisitos:
+            "Grado de Bachiller Canónico en Ciencias Religiosas y certificado total de estudios.",
+        },
+        {
+          slug: "licenciatura-en-ciencias-religiosas",
+          nombre: "Licenciatura en Ciencias Religiosas",
+          facultad: "Instituto Superior de Ciencias Religiosas",
+          grado: "Validez SEP",
+          requisitos:
+            "Certificado de Bachillerato legalizado, acta de nacimiento y CURP.",
+        },
+        {
+          slug: "maestria-en-ciencias-religiosas",
+          nombre: "Maestría en Ciencias Religiosas",
+          facultad: "Instituto Superior de Ciencias Religiosas",
+          grado: "Validez SEP",
+          requisitos:
+            "Título y cédula de Licenciatura en Ciencias Religiosas, Teología o Educación, y entrevista.",
+        },
+      ];
+
+      const inputTelefono = document.getElementById("telefono");
+
+      if (inputTelefono) {
+        inputTelefono.addEventListener("input", function () {
+          this.value = this.value.replace(/\D/g, "").slice(0, 10);
+        });
+
+        inputTelefono.addEventListener("paste", function (e) {
+          e.preventDefault();
+          const textoPegado = (e.clipboardData || window.clipboardData).getData(
+            "text",
+          );
+          this.value = textoPegado.replace(/\D/g, "").slice(0, 10);
+        });
+      }
+
+      function poblarSelector() {
+        const select = document.getElementById("programa");
+        const facultades = [...new Set(ofertaEducativa.map((p) => p.facultad))];
+
+        facultades.forEach((fac) => {
+          const optgroup = document.createElement("optgroup");
+          optgroup.label = fac;
+
+          ofertaEducativa
+            .filter((p) => p.facultad === fac)
+            .forEach((prog) => {
+              const option = document.createElement("option");
+              option.value = prog.slug;
+              option.textContent = `${prog.nombre} (${prog.grado})`;
+              optgroup.appendChild(option);
+            });
+
+          select.appendChild(optgroup);
+        });
+      }
+
+      function detectarSlugInicial() {
+        const params = new URLSearchParams(window.location.search);
+        let slug =
+          params.get("programa") || params.get("curso") || params.get("slug");
+
+        if (!slug) {
+          try {
+            const segmentos = window.top.location.pathname
+              .split("/")
+              .filter(Boolean);
+            if (segmentos.length > 0) slug = segmentos[segmentos.length - 1];
+          } catch (e) {}
+        }
+
+        if (slug) seleccionarProgramaPorSlug(slug, true);
+      }
+
+      function seleccionarProgramaPorSlug(slug, bloquear = true) {
+        const limpio = String(slug || "")
+          .toLowerCase()
+          .trim();
+        const encontrado = ofertaEducativa.find(
+          (p) => p.slug.toLowerCase() === limpio,
+        );
+        const select = document.getElementById("programa");
+        const hiddenSlug = document.getElementById("programa_slug_bloqueado");
+        const avisoBloqueo = document.getElementById(
+          "aviso-programa-bloqueado",
+        );
+
+        if (encontrado) {
+          select.value = encontrado.slug;
+          hiddenSlug.value = encontrado.slug;
+
+          if (bloquear) {
+            select.disabled = true;
+            avisoBloqueo.classList.remove("hidden");
+          }
+          actualizarInfoPrograma();
+        } else {
+          select.disabled = false;
+          hiddenSlug.value = "";
+          avisoBloqueo.classList.add("hidden");
+        }
+      }
+
+      window.addEventListener("message", function (event) {
+        if (!event.data) return;
+        const slugMsg =
+          typeof event.data === "string" ? event.data : event.data.slug;
+        if (slugMsg) seleccionarProgramaPorSlug(slugMsg, true);
+      });
+      function seleccionarProgramaPorSlug(slug, ocultarSiExiste = true) {
+        const limpio = String(slug || "")
+          .toLowerCase()
+          .trim();
+        const encontrado = ofertaEducativa.find(
+          (p) => p.slug.toLowerCase() === limpio,
+        );
+        const grupoPrograma = document.getElementById("grupo-programa");
+        const select = document.getElementById("programa");
+        const hiddenSlug = document.getElementById("programa_slug_bloqueado");
+        const avisoBloqueo = document.getElementById(
+          "aviso-programa-bloqueado",
+        );
+
+        if (encontrado) {
+          select.value = encontrado.slug;
+          hiddenSlug.value = encontrado.slug;
+
+          if (ocultarSiExiste) {
+            grupoPrograma.style.display = "none";
+            select.disabled = true;
+            select.required = false;
+            avisoBloqueo.classList.add("hidden");
+          } else {
+            grupoPrograma.style.display = "";
+            select.disabled = true;
+            select.required = true;
+            avisoBloqueo.classList.remove("hidden");
+          }
+
+          actualizarInfoPrograma();
+        } else {
+          grupoPrograma.style.display = "";
+          select.disabled = false;
+          select.required = true;
+          hiddenSlug.value = "";
+          avisoBloqueo.classList.add("hidden");
+          actualizarInfoPrograma();
+        }
+      }
+
+      function actualizarInfoPrograma() {
+        const select = document.getElementById("programa");
+        const hiddenSlug = document.getElementById(
+          "programa_slug_bloqueado",
+        ).value;
+        const slug = select.disabled && hiddenSlug ? hiddenSlug : select.value;
+        const prog = ofertaEducativa.find((p) => p.slug === slug);
+        const card = document.getElementById("requisitos-container");
+        const lista = document.getElementById("req-lista");
+
+        if (!prog) {
+          card.style.display = "none";
+          if (lista) lista.innerHTML = "";
+          return;
+        }
+
+        document.getElementById("req-badge").textContent =
+          `${prog.nombre} • ${prog.grado}`;
+
+        if (lista) {
+          const items = Array.isArray(prog.requisitos)
+            ? prog.requisitos
+            : String(prog.requisitos || "")
+                .split(",")
+                .map((s) => s.trim())
+                .filter(Boolean);
+
+          lista.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+        }
+
+        card.style.display = "block";
+      }
+
+      document
+        .getElementById("registroForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const select = document.getElementById("programa");
+          const hiddenSlug = document.getElementById(
+            "programa_slug_bloqueado",
+          ).value;
+          const slug =
+            select.disabled && hiddenSlug ? hiddenSlug : select.value;
+          const prog = ofertaEducativa.find((p) => p.slug === slug);
+          if (!prog) return;
+
+          document.getElementById("loading-overlay").style.display = "flex";
+
+          const lada = document.getElementById("lada").value;
+          const numero = document.getElementById("telefono").value.trim();
+
+          const payload = {
+            action: "add",
+            nombre: document.getElementById("nombre").value.trim(),
+            correo: document.getElementById("correo").value.trim(),
+            lada: lada,
+            telefono: `${lada} ${numero}`,
+            facultad: prog.facultad,
+            programa: prog.nombre,
+            tipoGrado: prog.grado,
+          };
+
+          fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify(payload),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              document.getElementById("loading-overlay").style.display = "none";
+              if (data.status === "success") {
+                mostrarPantallaExito(prog, data.id);
+              } else {
+                throw new Error(data.message || "Error al guardar");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+              document.getElementById("loading-overlay").style.display = "none";
+              alert(
+                "Ocurrió un error al enviar tu solicitud. Intenta de nuevo.",
+              );
+            });
+        });
+
+      function mostrarPantallaExito(prog, folio) {
+        document.getElementById("registroForm").classList.add("hidden");
+        document.getElementById("folio-generado").textContent =
+          folio || "Registrado";
+
+        const info = directorioFacultades[prog.facultad] || {
+          responsable: "Servicios Escolares UPM",
+          correo: "informes@pontificia.edu.mx",
+          telefono: "(55) 5573-0600",
+          horario: "Lunes a Viernes de 9:00 a 15:00 hrs",
+        };
+
+        document.getElementById("contacto-facultad-titulo").textContent =
+          `Contacto: ${prog.facultad}`;
+        document.getElementById("contacto-responsable").textContent =
+          info.responsable;
+        const linkCorreo = document.getElementById("contacto-correo");
+        linkCorreo.textContent = info.correo;
+        linkCorreo.href = `mailto:${info.correo}?subject=${encodeURIComponent("Seguimiento de solicitud - " + prog.nombre + (folio ? " [" + folio + "]" : ""))}`;
+        document.getElementById("contacto-telefono").textContent =
+          info.telefono;
+        document.getElementById("contacto-horario").textContent = info.horario;
+
+        document.getElementById("mensaje-exito").classList.remove("hidden");
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        poblarSelector();
+        detectarSlugInicial();
+      });
+    </script>
+  </body>
+</html>
